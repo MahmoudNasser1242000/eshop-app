@@ -57,8 +57,8 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
         req.body.images.push(imagesName);
       })
     );
+    next();
   }
-  next();
 });
 
 exports.getProducts = getAll(productModel, "Products");
