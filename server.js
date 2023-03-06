@@ -27,7 +27,7 @@ const orderRoute = require("./routes/orderRoute")
 
 // expres app
 const app = express();
-app.use(express.json())
+app.use(express.json({limit: "20kb"}))
 app.use(express.static(path.join(__dirname, "uploads")))
 
 // Enable other domains to access your application
