@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, "uploads")))
 // Limit each IP to 100 requests per `window` (here, per 15 minutes)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5,
+  max: 100,
   message:
     'Too many accounts created from this IP, please try again after an hour',
 });
