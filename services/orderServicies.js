@@ -189,7 +189,7 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
       req.body,
       sig,
       process.env.ENDPOINT_SECRET_KEY
-    )
+    ).JSON.Parse()
   } catch (err) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
