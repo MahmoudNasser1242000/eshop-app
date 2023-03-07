@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const cors = require('cors');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
+const bodyParser = require('body-parser');
 
 dotenv.config({ path: "config.env" });
 const ApiError = require("./utils/apiError")
@@ -53,7 +54,7 @@ app.use(compression());
 // Checkout webhook
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  bodyParser.raw({ type: 'application/json' }),
   webhookCheckout
 );
 
