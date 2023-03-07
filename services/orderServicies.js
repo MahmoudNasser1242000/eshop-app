@@ -119,18 +119,19 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
 
   // 3) Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
+    line_items: cart.rows.map((product) => {
+      console.log(product)
+      return {
         price_data: {
           currency: "egp",
-          unit_amount: totalOrderPrice * 100,
           product_data: {
             name: "products",
           },
+          unit_amount: totalOrderPrice * 100,
         },
         quantity: 1,
-      },
-    ],
+      };
+    }),
     mode: "payment",
     success_url: `${req.protocol}://${req.get("host")}/order`,
     cancel_url: `${req.protocol}://${req.get("host")}/cart`,
@@ -188,7 +189,7 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
       payload,
       sig,
       process.env.ENDPOINT_SECRET_KEY
-    )
+    );
   } catch (err) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
