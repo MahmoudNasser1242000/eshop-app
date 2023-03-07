@@ -181,7 +181,7 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
   const sig = req.headers["stripe-signature"];
 
   let event;
-  const payload = await request.text();
+  const payload = await req.text();
 
   try {
     event = stripe.webhooks.constructEvent(
