@@ -54,7 +54,7 @@ app.use(compression());
 // Checkout webhook
 app.post(
   '/webhook-checkout',
-  bodyParser.raw({ type: 'application/json' }),
+  express.raw({ type: 'application/json' }),
   webhookCheckout
 );
 
