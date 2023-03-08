@@ -7,6 +7,7 @@ const cors = require("cors");
 const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const hpp = require('hpp');
+const mongoSanitize = require('express-mongo-sanitize');
 const bodyParser = require("body-parser");
 
 dotenv.config({ path: "config.env" });
@@ -57,6 +58,9 @@ app.use(
     ],
   })
 );
+
+//middleware which sanitizes user-supplied data to prevent MongoDB Operator Injection.
+app.use(mongoSanitize())
 
 // Enable other domains to access your application
 app.use(cors());
