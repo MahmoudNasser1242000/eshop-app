@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const compression = require("compression");
 const rateLimit = require("express-rate-limit");
+const hpp = require('hpp');
 const bodyParser = require("body-parser");
 
 dotenv.config({ path: "config.env" });
