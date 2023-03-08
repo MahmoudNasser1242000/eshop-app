@@ -108,6 +108,7 @@ app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this url: ${req.originalUrl}`, 400));
 });
 
+// Global error handling middleware for express
 app.use(errMiddleware);
 
 const port = process.env.PORT || 8000;
