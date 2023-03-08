@@ -8,6 +8,7 @@ const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const mongoSanitize = require("express-mongo-sanitize");
+const xss = require('xss-clean')
 const bodyParser = require("body-parser");
 
 dotenv.config({ path: "config.env" });
@@ -62,6 +63,9 @@ app.use(
 //middleware which sanitizes user-supplied data to prevent MongoDB Operator Injection.
 //This module searches for any keys in objects that begin with a $ sign, from req.body, req.query or req.params
 app.use(mongoSanitize());
+
+// will return "&lt;script>&lt;/script>"
+app.use(xss())
 
 // Enable other domains to access your application
 app.use(cors());
