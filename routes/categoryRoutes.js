@@ -23,11 +23,7 @@ router.use("/:categoryId/subcategories", subcategoryRoute);
 
 router
   .route("/")
-  .get(
-    authService.protect,
-    authService.allowedTo("admin", "manager"),
-    getCategories
-  )
+  .get(getCategories)
   .post(
     authService.protect,
     authService.allowedTo("admin", "manager"),
