@@ -19,14 +19,21 @@ const categorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+
+// findOne, findAll and update
 categorySchema.post("init", (doc) => {
-  const imgURL = `${process.env.BASE_URL}/categories/${doc.image}`;
-  doc.image = imgURL;
+  if (doc.image) {
+    const imgURL = `${process.env.BASE_URL}/categories/${doc.image}`;
+    doc.image = imgURL;
+  }
 });
 
+// create
 categorySchema.post("save", (doc) => {
-  const imgURL = `${process.env.BASE_URL}/categories/${doc.image}`;
-  doc.image = imgURL;
+  if (doc.image) {
+    const imgURL = `${process.env.BASE_URL}/categories/${doc.image}`;
+    doc.image = imgURL;
+  }
 });
 
 // create module
